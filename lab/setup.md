@@ -67,7 +67,7 @@ The code is now opened in Visual Studio, feel free to take a look at it or skip 
 
 ## Start the app
 
-1. [] Open the **Solution Explorer** from teh **View -> Solution Explorer** menu.
+1. [] Open the **Solution Explorer** from the **View -> Solution Explorer** menu.
 1. [] Set the **TinyShop.AppHost** as the startup project if it isn't by right clicking on the **TinyShop.AppHost** and selecting **Set as startup project**  and start the project with F5 or Debug -> Start Debugging from the menu.
 
     The .NET Aspire AppHost will start two applications and the .NET Aspire Dashboard:
