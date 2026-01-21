@@ -11,7 +11,7 @@ In this section, you'll use GitHub Copilot's code completion to implement API en
 
    > Note: GitHub Copilot will not give code suggestions when debugging.
    
-1. [] Let's implement a new **MapGet** to get product details for a specific **id**. Move our cursor and click on line 20 under the existing **/** endpoint. Text suggestion may apprear or type:
+1. [] Let's implement a new **MapGet** to get product details for a specific **id**. Move our cursor and click on line 20 under the existing **/** endpoint. Text suggestion may appear or type:
    ```csharp
    g
    ```
@@ -36,7 +36,7 @@ In this section, you'll use GitHub Copilot's code completion to implement API en
      - ![Switch to agent mode](./images/1-agent.png)]
      - Ask the agent: `Can you implement the rest of the endpoints for the Product API and also implement the ProductService to call these new endpoints in the Store project?`
 
-   The end code in **ProductEndpoints.cs** sould look similar to:
+   The end code in **ProductEndpoints.cs** should look similar to:
 
    ```csharp
    group.MapGet("/", async (ProductDataContext db) =>
