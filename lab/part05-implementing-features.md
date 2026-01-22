@@ -1,6 +1,6 @@
 # Part 05: Implementing Features with Copilot Agent
 
-Previously we utilized Copilot chat, which is great for working with an individual file or asking questions about our code. However, many updates necessitate changes to multiple files throughout a codebase. Even a seemingly basic change to a webpage likely requires updating HTML, CSS, Razor, and C# files. Copilot Agent allows you to modify multiple files at once across your project, self heals, and can run commands if granted permission like installing NuGet packages.
+Previously we utilized Copilot Chat, which is great for working with an individual file or asking questions about our code. However, many updates necessitate changes to multiple files throughout a codebase. Even a seemingly basic change to a webpage likely requires updating HTML, CSS, Razor, and C# files. Copilot Agent allows you to modify multiple files at once across your project, self heals, and can run commands if granted permission like installing NuGet packages.
 
 With Copilot Agent, you will add the files which need to be updated to the context. Once you provide the prompt, Copilot Agent will begin the updates across all files in the context. It also has the ability to create new files or add files to the context as it deems appropriate.
 
@@ -16,15 +16,15 @@ Let's add the ability to see a list of images into the app:
 
     ![New chat icon in VS copilot](./images/5-new-edits.png)
 
-1. [] At the bottom of the GitHub Copilot Chat pane, select the model (default is GPT-4o") from the dropdown list, and select **Claude 4.5 Sonnet** from the list of available models.
+1. [] At the bottom of the GitHub Copilot Chat pane, select the model (default is "GPT-4o") from the dropdown list, and select **Claude Opus 4.5** from the list of available models.
 
-    ![Select Sonnet in Copilot](./images/5-select-sonnet.png)
+    ![Select Opus in Copilot](./images/5-select-sonnet.png)
 
 1. [] Type: `Implement a simple product listing page in Products.razor that fetches products from #ProductService and displays them in a simple list with product name, description, price, and image.`
 
     > NOTE: You should use your own phrasing when generating the prompt. As highlighted previously, part of the exercise is to become comfortable creating prompts for GitHub Copilot. One key tip is it's always good to provide more guidance to ensure you get the code you are looking for.
 
-    > NOTE: If you are asked to **Enable Claude 4.5 Sonnet for all clients** click on **Enable** button.
+    > NOTE: If you are asked to **Enable Claude Opus 4.5 for all clients** click on **Enable** button.
 
 Copilot agent mode begins implementing the code suggestions!
 
