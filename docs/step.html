@@ -600,8 +600,11 @@
                 nextLink.textContent = `${steps[idx + 1].title} →`;
                 nextLink.classList.remove('disabled');
             } else {
-                nextLink.classList.add('disabled');
-                nextLink.textContent = 'Next →';
+                // Last step - link to completion page
+                nextLink.href = 'complete.html';
+                nextLink.textContent = '🎉 Complete Workshop!';
+                nextLink.classList.remove('disabled');
+                nextLink.style.background = 'linear-gradient(135deg, var(--vs-purple), var(--vs-blue))';
             }
         }
 

@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎉 Workshop Complete! | VS GitHub Copilot Lab</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
+    <style>
+        :root {
+            --bg-dark: #0a0a0f;
+            --bg-card: #12121a;
+            --vs-purple: #68217a;
+            --vs-blue: #0078d4;
+            --neon-purple: #b366ff;
+            --neon-blue: #00d4ff;
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0b0;
+            --border-color: #2a2a3a;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-primary);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        /* Animated grid background */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                linear-gradient(90deg, rgba(104,33,122,0.05) 1px, transparent 1px),
+                linear-gradient(rgba(104,33,122,0.05) 1px, transparent 1px);
+            background-size: 50px 50px;
+            pointer-events: none;
+            z-index: -1;
+            animation: gridPulse 4s ease-in-out infinite;
+        }
+
+        @keyframes gridPulse {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
+        }
+
+        .container {
+            text-align: center;
+            padding: 2rem;
+            max-width: 800px;
+            z-index: 10;
+        }
+
+        .trophy {
+            font-size: 8rem;
+            margin-bottom: 1rem;
+            animation: bounce 2s ease-in-out infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        h1 {
+            font-size: clamp(2.5rem, 8vw, 4.5rem);
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--vs-purple), var(--neon-blue), var(--neon-purple));
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradientShift 3s ease infinite;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .subtitle {
+            font-size: 1.5rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+        }
+
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin: 3rem 0;
+            flex-wrap: wrap;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--neon-purple);
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            margin-top: 0.25rem;
+        }
+
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.75rem;
+            margin: 2rem 0;
+        }
+
+        .skill-badge {
+            padding: 0.5rem 1rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 50px;
+            font-size: 0.9rem;
+            color: var(--neon-blue);
+            transition: all 0.3s ease;
+        }
+
+        .skill-badge:hover {
+            border-color: var(--neon-purple);
+            transform: scale(1.05);
+        }
+
+        .buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 1.1rem;
+            cursor: pointer;
+            border: none;
+            font-family: inherit;
+        }
+
+        .btn-confetti {
+            background: linear-gradient(135deg, #ff6b6b, #feca57, #48dbfb, #ff9ff3, #54a0ff);
+            background-size: 300% 300%;
+            color: var(--bg-dark);
+            animation: rainbow 3s ease infinite;
+            font-size: 1.25rem;
+            padding: 1.25rem 2.5rem;
+        }
+
+        @keyframes rainbow {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .btn-confetti:hover {
+            transform: scale(1.1) rotate(-2deg);
+            box-shadow: 0 10px 40px rgba(255,107,107,0.4);
+        }
+
+        .btn-confetti:active {
+            transform: scale(0.95);
+        }
+
+        .btn-secondary {
+            background: var(--bg-card);
+            border: 2px solid var(--border-color);
+            color: var(--text-primary);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--neon-purple);
+            color: var(--neon-purple);
+            transform: translateY(-2px);
+        }
+
+        .footer-links {
+            margin-top: 3rem;
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--neon-purple);
+        }
+
+        .confetti-counter {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            margin-top: 1rem;
+        }
+
+        .confetti-counter span {
+            color: var(--neon-purple);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="trophy">🏆</div>
+        <h1>Workshop Complete!</h1>
+        <p class="subtitle">You've mastered GitHub Copilot in Visual Studio 2026!</p>
+
+        <div class="stats">
+            <div class="stat">
+                <div class="stat-value">13</div>
+                <div class="stat-label">Parts Completed</div>
+            </div>
+            <div class="stat">
+                <div class="stat-value">∞</div>
+                <div class="stat-label">Productivity Unlocked</div>
+            </div>
+            <div class="stat">
+                <div class="stat-value">🚀</div>
+                <div class="stat-label">Ready to Ship</div>
+            </div>
+        </div>
+
+        <div class="skills">
+            <span class="skill-badge">✨ Code Completion</span>
+            <span class="skill-badge">🤖 Agent Mode</span>
+            <span class="skill-badge">💬 Copilot Chat</span>
+            <span class="skill-badge">👁️ Vision</span>
+            <span class="skill-badge">🔌 MCP Servers</span>
+            <span class="skill-badge">📋 Planning Mode</span>
+            <span class="skill-badge">📝 Prompt Files</span>
+            <span class="skill-badge">☁️ Cloud Delegation</span>
+            <span class="skill-badge">🐛 Debugging</span>
+        </div>
+
+        <div class="buttons">
+            <button class="btn btn-confetti" id="confettiBtn">
+                🎊 More Confetti!
+            </button>
+        </div>
+        
+        <p class="confetti-counter">Confetti bursts: <span id="counter">0</span></p>
+
+        <div class="buttons">
+            <a href="index.html" class="btn btn-secondary">🏠 Back to Home</a>
+            <a href="step.html?step=setup" class="btn btn-secondary">🔄 Start Over</a>
+            <a href="https://github.com/dotnet-presentations/visual-studio-github-copilot-lab" class="btn btn-secondary">⭐ Star on GitHub</a>
+        </div>
+
+        <div class="footer-links">
+            <a href="https://learn.microsoft.com/visualstudio/ide/visual-studio-github-copilot-extension">📚 VS Copilot Docs</a>
+            <a href="https://github.com/features/copilot">🤖 GitHub Copilot</a>
+            <a href="https://dotnet.microsoft.com/">.NET</a>
+        </div>
+    </div>
+
+    <script>
+        let confettiCount = 0;
+        const counter = document.getElementById('counter');
+        const btn = document.getElementById('confettiBtn');
+
+        // Epic confetti function
+        function fireConfetti() {
+            const duration = 3000;
+            const animationEnd = Date.now() + duration;
+            const colors = ['#68217a', '#0078d4', '#b366ff', '#00d4ff', '#ff6b6b', '#feca57', '#48dbfb'];
+
+            const randomInRange = (min, max) => Math.random() * (max - min) + min;
+
+            (function frame() {
+                confetti({
+                    particleCount: 7,
+                    angle: 60,
+                    spread: 55,
+                    origin: { x: 0, y: 0.7 },
+                    colors: colors
+                });
+                confetti({
+                    particleCount: 7,
+                    angle: 120,
+                    spread: 55,
+                    origin: { x: 1, y: 0.7 },
+                    colors: colors
+                });
+
+                if (Date.now() < animationEnd) {
+                    requestAnimationFrame(frame);
+                }
+            }());
+
+            // Center burst
+            confetti({
+                particleCount: 100,
+                spread: 100,
+                origin: { y: 0.6 },
+                colors: colors
+            });
+
+            confettiCount++;
+            counter.textContent = confettiCount;
+        }
+
+        // Initial confetti on page load
+        window.addEventListener('load', () => {
+            setTimeout(fireConfetti, 300);
+        });
+
+        // Button click
+        btn.addEventListener('click', fireConfetti);
+
+        // Keyboard shortcut
+        document.addEventListener('keydown', (e) => {
+            if (e.code === 'Space') {
+                e.preventDefault();
+                fireConfetti();
+            }
+        });
+
+        // Easter egg: Konami code for mega confetti
+        let konamiCode = [];
+        const konamiSequence = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'KeyB', 'KeyA'];
+        
+        document.addEventListener('keydown', (e) => {
+            konamiCode.push(e.code);
+            konamiCode = konamiCode.slice(-10);
+            
+            if (konamiCode.join(',') === konamiSequence.join(',')) {
+                // MEGA CONFETTI
+                for (let i = 0; i < 10; i++) {
+                    setTimeout(() => {
+                        confetti({
+                            particleCount: 200,
+                            spread: 180,
+                            origin: { x: Math.random(), y: Math.random() * 0.5 },
+                            colors: ['#68217a', '#0078d4', '#b366ff', '#00d4ff', '#ff6b6b', '#feca57']
+                        });
+                    }, i * 150);
+                }
+                confettiCount += 10;
+                counter.textContent = confettiCount;
+            }
+        });
+    </script>
+</body>
+</html>
