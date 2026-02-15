@@ -2,11 +2,40 @@
 using Microsoft.EntityFrameworkCore;
 using Products.Data;
 
+//// <summary>
+//// Endpoints for the Products API.
+//// This file contains extension methods that register HTTP endpoints for product operations.
+//// </summary>
 namespace Products.Endpoints;
 
+
+/// <summary>
+/// Provides extension methods to map HTTP endpoints for product operations.
+/// </summary>
+/// <remarks>
+/// This static class contains an extension method that registers the following endpoints:
+/// - GET /api/Product/           : Returns all products.
+/// - GET /api/Product/{productId}: Returns a product by id.
+/// - POST /api/Product/          : Creates a new product.
+/// - PUT /api/Product/{id}       : Updates an existing product.
+/// - DELETE /api/Product/{id}    : Deletes a product.
+/// </remarks>
 public static class ProductEndpoints
 {
-    public static void MapProductEndpoints (this IEndpointRouteBuilder routes)
+    /// <summary>
+    /// Maps product-related endpoints onto the provided <see cref="IEndpointRouteBuilder"/>
+    /// </summary>
+    /// <param name="routes">The endpoint route builder to register routes on.</param>
+    /// <remarks>
+    /// This method is an extension method and will register a route group at "/api/Product".
+    /// Registered endpoints:
+    /// - GET "/" returns all products.
+    /// - GET "/{productId}" returns a product by id or 404 if not found.
+    /// - POST "/" creates a new product and returns 201 with Location header.
+    /// - PUT "/{id}" updates an existing product and returns 204 on success or 404 if not found.
+    /// - DELETE "/{id}" deletes a product and returns 204 on success or 404 if not found.
+    /// </remarks>
+    public static void MapProductEndpoints(this IEndpointRouteBuilder routes)
     {
         var group = routes.MapGroup("/api/Product");
 
@@ -18,9 +47,9 @@ public static class ProductEndpoints
         .Produces<List<Product>>(StatusCodes.Status200OK);
 
         //get existing product by id
-        group.MapGet("/{id}", async (int id, ProductDataContext db) =>
+        group.MapGet("/{productId}", async (int productId, ProductDataContext db) =>
         {
-            return await db.Product.FindAsync(id)
+            return await db.Product.FindAsync(productId)
                 is Product model
                     ? Results.Ok(model)
                     : Results.NotFound();
