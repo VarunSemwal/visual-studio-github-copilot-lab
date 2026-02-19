@@ -3,6 +3,7 @@
 @using Store.Services
 @inject IConfiguration Configuration
 @inject ProductService ProductService
+@inject NavigationManager NavigationManager
 @rendermode InteractiveServer
 @attribute [StreamRendering(true)]
 
@@ -27,7 +28,7 @@ else
     <div class="product-grid">
         @foreach (var product in products)
         {
-            <div class="product-card">
+            <div class="product-card" @onclick="() => NavigateToProduct(product.Id)">
                 <div class="product-image-container">
                     <img src="@($"{imagePrefix}{product.ImageUrl}")" alt="@product.Name" class="product-image" />
                 </div>
@@ -50,4 +51,8 @@ else
         products = await ProductService.GetProducts();
     }
 
+    private void NavigateToProduct(int productId)
+    {
+        NavigationManager.NavigateTo($"/product/{productId}");
+    }
 }

@@ -1,0 +1,66 @@
+@page "/product/{id:int}"
+@using DataEntities
+@using Store.Services
+@inject IConfiguration Configuration
+@inject ProductService ProductService
+@inject NavigationManager NavigationManager
+@rendermode InteractiveServer
+@attribute [StreamRendering(true)]
+
+<PageTitle>@(product?.Name ?? "Product Details")</PageTitle>
+
+@if (product == null && !notFound)
+{
+    <div class="spinner-border text-primary" role="status">
+        <span class="visually-hidden">Loading...</span>
+    </div>
+}
+else if (notFound)
+{
+    <div class="alert alert-warning">
+        <h4>Product Not Found</h4>
+        <p>The product you're looking for doesn't exist.</p>
+        <button class="btn btn-primary" @onclick="NavigateBack">Back to Products</button>
+    </div>
+}
+else
+{
+    <div class="product-detail">
+        <div class="product-detail-image-container">
+            <img src="@($"{imagePrefix}{product!.ImageUrl}")" alt="@product.Name" class="product-detail-image" />
+        </div>
+        <div class="product-detail-info">
+            <h1 class="product-detail-name">@product.Name</h1>
+            <p class="product-detail-description">@product.Description</p>
+            <span class="product-detail-price">@product.Price.ToString("C")</span>
+            <button class="btn btn-outline-secondary back-button" @onclick="NavigateBack">
+                <span>&#8592;</span> Back to Products
+            </button>
+        </div>
+    </div>
+}
+
+@code {
+    [Parameter]
+    public int Id { get; set; }
+
+    private Product? product;
+    private string imagePrefix = string.Empty;
+    private bool notFound = false;
+
+    protected override async Task OnInitializedAsync()
+    {
+        imagePrefix = Configuration["ImagePrefix"]!;
+        product = await ProductService.GetProductById(Id);
+        
+        if (product == null)
+        {
+            notFound = true;
+        }
+    }
+
+    private void NavigateBack()
+    {
+        NavigationManager.NavigateTo("/products");
+    }
+}
